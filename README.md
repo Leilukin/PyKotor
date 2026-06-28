@@ -3,18 +3,29 @@ PyKotor
 =======
 A comprehensive Python library that can read and modify most file formats used by the game [Knights of the Old Republic](https://en.wikipedia.org/wiki/Star_Wars:_Knights_of_the_Old_Republic_(video_game)) and its [sequel](https://en.wikipedia.org/wiki/Star_Wars_Knights_of_the_Old_Republic_II:_The_Sith_Lords).
 
-## Installation
-(The PyPI egg is currently in maintenance. Please check back later) Install from [PyPI](https://pypi.org/project/PyKotor/).
-```commandline
-pip install pykotor
-```
-
 ## Requirements
-PyKotor supports any Python version between 3.8 and 3.12. See requirements-dev.txt and pyproject.toml for additional pip dependencies.
+PyKotor supports any Python version between 3.8 and 3.12. See `requirements-dev.txt` and `pyproject.toml` for additional pip dependencies.
 PyKotor is supported on most (if not all) operating systems. Yes, this includes Mac and any other case-sensitive filesystem.
 
-## Cloning the repo
-If you would like to work with the source files directly from GitHub, run the following commands to get yourself set:
+## Working with Source
+If you would like to work with the source files directly, run the following commands to get yourself set:
+
+### uv (Recommended)
+
+The easiest method to work with the source files is to use [uv](https://docs.astral.sh/uv/). Install uv before running the following terminal commands.
+
+```shell
+# Create a virtual environment, using Python 3.12 as specified in .python-version
+uv venv
+
+# Install the project and its dependencies
+uv pip install -e .
+
+# Or install dev dependencies too
+uv pip install -r requirements-dev.txt
+```
+
+### pip
 
 **Note**: Linux/Mac users should initialize a powershell shell with the command `pwsh`, before executing the below commands:
 
@@ -27,8 +38,9 @@ For more information on running our Powershell scripts, please see [POWERSHELL.m
 
 If powershell is not an option for you, you can install Python manually from https://www.python.org/, and set your environment variable PYTHONPATH manually by looking inside the '.env' file in the root of this repo.
 
+### Running PyKotor Tools
 
-Once 'install_python_venv.ps1' finishes, you can run any of the provided tools, such as HoloPatcher, KotorDiff, or the Toolset, like this:
+Once the setup finishes, you can run any of the provided tools, such as HoloPatcher, KotorDiff, or the Holocron Toolset, like this:
 ```commandline
 pip install -r Tools/HoloPatcher/requirements.txt --prefer-binary
 python Tools/HoloPatcher/src/holopatcher/__main__.py
@@ -36,6 +48,8 @@ pip install -r Tools/HolocronToolset/requirements.txt --prefer-binary
 python Tools/HolocronToolset/src/toolset/__main__.py
 python Tools/KotorDiff/src/kotordiff/__main__.py
 ```
+
+If you use uv, you need to add `uv` before any of the `pip install` commands above.
 
 see [HoloPatcher's readme](https://github.com/NickHugi/PyKotor/tree/master/Tools/HoloPatcher#readme) for more information
 
@@ -48,6 +62,7 @@ pip install -r requirements-dev.txt --prefer-binary
 We use `--prefer-binary` as building pip packages from source can occasionally fail on some operating systems/python environments.
 
 ## Compiling/Building Available Tools:
+
 After cloning the repo, open any of the powershell scripts in the `compile` folder such as `compile_holopatcher.ps1` and `compile_toolset.ps1` with PowerShell. Run the `deps_holopatcher.ps1` or `deps_toolset.ps1` first to get the dependencies setup. Doing so will start an automated process that results in a EXE being built/compiled to the PyKotor/dist folder. Specifically, those scripts will:
 - Find a compatible Python interpreter, otherwise will install Python 3.8
 - Setup the environment (the venv and PYTHONPATH)
@@ -57,6 +72,7 @@ After cloning the repo, open any of the powershell scripts in the `compile` fold
 
 
 ## Working with Installation class in src:
+
 Simple example of loading data from a game directory, searching for a specific texture, and exporting it to the TGA format.
 ```python
 from pykotor.resource.type import ResourceType
