@@ -17,7 +17,10 @@ The easiest method to work with the source files is to use [uv](https://docs.ast
 ```shell
 # Create a virtual environment, using Python 3.12 as specified in .python-version
 uv venv
+```
 
+After creating a virtual environment, follow the terminal instructions to activate the virtual environment, then run the following commands:
+```shell
 # Install the project and its dependencies
 uv pip install -e .
 
